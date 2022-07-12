@@ -1,3 +1,6 @@
 [submodule "FastBATLLNN"]
 	path = FastBATLLNN
 	url = https://github.com/jferlez/FastBATLLNN
+[submodule "nnenum"]
+	path = nnenum
+	url = https://github.com/stanleybak/nnenum

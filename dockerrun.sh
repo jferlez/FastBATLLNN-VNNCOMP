@@ -9,7 +9,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 SYSTEM_TYPE=$(uname)
 PORT=""
 HTTPPORT=8000
-INTERACTIVE=""
+INTERACTIVE="-it"
 for argwhole in "$@"; do
     IFS='=' read -r -a array <<< "$argwhole"
     arg="${array[0]}"
@@ -18,7 +18,7 @@ for argwhole in "$@"; do
         --gpu) GPUS="--gpus all";;
         --ssh-port) PORT=`echo "$val" | sed -e 's/[^0-9]//g'`;;
         --http-port) HTTPPORT=`echo "$val" | sed -e 's/[^0-9]//g'`;;
-        --interactive) INTERACTIVE="-it"
+        --no-interactive) INTERACTIVE=""
     esac
 done
 

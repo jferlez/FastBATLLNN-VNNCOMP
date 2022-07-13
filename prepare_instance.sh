@@ -20,4 +20,23 @@
 # ** NB: ** If you want to skip a benchmark category entirely, you can have prepare_instance.sh 
 # return a nonzero value (the category is passed in as a command=line argument).
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+BENCHMARK=$2
+ONNXFILE="$3"
+VNNLIBFILE="$4"
+
+# Skip anything that isn't a TLL
+if [ "$BENCHMARK" != "tllverifybench" ]; then
+    exit 1
+fi
+
+export PYTHONPATH="${SCRIPT_DIR}/FastBATLLNN:${SCRIPT_DIR}/FastBATLLNN/HyperplaneRegionEnum:${SCRIPT_DIR}/FastBATLLNN/TLLnet:${SCRIPT_DIR}/nnenum/src/nnenum"
+
+sleep 5
+
+"${SCRIPT_DIR}/FastBATLLNN/dockerrun.sh" --server
+
+sleep 10
+
+python3 -m FastBATLLNNClient setProblem "$ONNXFILE" "$VNNLIBFILE" $TIMEOUT

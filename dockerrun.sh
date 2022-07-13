@@ -27,6 +27,10 @@ if [[ $PORT =~ $re ]] ; then
     PORT="-p $PORT:22"
 fi
 
+if ! [[ $HTTPPORT =~ $re ]] ; then
+    echo "error: Invalid port specified" >&2; exit 1
+fi
+
 if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     SHMSIZE=$(( `sysctl hw.memsize | sed -e 's/[^0-9]//g'` / 2097152 ))
     # Never enable GPUs on MacOS

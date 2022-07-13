@@ -9,7 +9,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 SYSTEM_TYPE=$(uname)
 PORT=""
 HTTPPORT=8000
-INTERACTIVE="-it"
+INTERACTIVE="-d"
 for argwhole in "$@"; do
     IFS='=' read -r -a array <<< "$argwhole"
     arg="${array[0]}"
@@ -18,7 +18,7 @@ for argwhole in "$@"; do
         --gpu) GPUS="--gpus all";;
         --ssh-port) PORT=`echo "$val" | sed -e 's/[^0-9]//g'`;;
         --http-port) HTTPPORT=`echo "$val" | sed -e 's/[^0-9]//g'`;;
-        --no-interactive) INTERACTIVE=""
+        --interactive) INTERACTIVE="-it"
     esac
 done
 
@@ -65,7 +65,7 @@ for CONT in $CONTAINERS; do
 done
 
 if [ "$EXISTING_CONTAINER" = "" ]; then
-    docker run --privileged $GPUS --shm-size=${SHMSIZE}gb $INTERACTIVE $PORT -p $HTTPPORT:8080 -v "$(pwd)"/container_results:/home/${user}/results fastbatllnn-server:${user} ${user}
+    docker run --privileged $GPUS --shm-size=${SHMSIZE}gb $INTERACTIVE $PORT -p $HTTPPORT:8080 -v "$(pwd)"/container_results:/home/${user}/results fastbatllnn-server:${user} ${user} $INTERACTIVE
 else
     echo "Restarting container $EXISTING_CONTAINER (command line options ignored)..."
     docker start $EXISTING_CONTAINER

@@ -37,6 +37,6 @@ sleep 5
 
 "${SCRIPT_DIR}/FastBATLLNN/dockerrun.sh" --server
 
-sleep 10
+sleep 30
 
 python3 -m FastBATLLNNClient setProblem "$ONNXFILE" "$VNNLIBFILE" $TIMEOUT

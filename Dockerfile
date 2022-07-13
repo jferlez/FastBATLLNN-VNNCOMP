@@ -3,6 +3,7 @@ FROM fastbatllnn-deps:local
 ARG USER_NAME
 ARG UID
 ARG GID
+ARG CORES
 
 # Delete some groups that overlap with MacOS standard user groups
 RUN delgroup --only-if-empty dialout
@@ -36,7 +37,7 @@ WORKDIR /home/${USER_NAME}/tools/FastBATLLNN
 USER root
 RUN chown -R ${UID}:${GID} /home/${USER_NAME}/
 
-RUN echo "#!/bin/bash\nnohup /usr/sbin/sshd -D &> /root/nohup.out &\nif [ -e /etc/ssh/ssh_host_rsa_key.pub ]\nthen\n echo \"\n****** SSH host key ******\"\ncat /etc/ssh/ssh_host_rsa_key.pub\necho \"**************************\n\"\nsudo -u \$1 cp /etc/ssh/ssh_host_rsa_key.pub /home/\$1/results\nfi\nif [ -e /home/\$1/results/authorized_keys ] && [ -d /home/\$1/.ssh ]\nthen\ncp /home/\$1/results/authorized_keys /home/\$1/.ssh\nchmod 600 /home/\$1/.ssh/authorized_keys && chown \$1:\$1 /home/\$1/.ssh/authorized_keys && rm /home/\$1/results/authorized_keys\nfi\nsudo -u \$1 /bin/bash" > /usr/local/bin/startup.sh
+RUN echo "#!/bin/bash\nnohup /usr/sbin/sshd -D &> /root/nohup.out &\nif [ -e /etc/ssh/ssh_host_rsa_key.pub ]\nthen\n echo \"\n****** SSH host key ******\"\ncat /etc/ssh/ssh_host_rsa_key.pub\necho \"**************************\n\"\nsudo -u \$1 cp /etc/ssh/ssh_host_rsa_key.pub /home/\$1/results\nfi\nif [ -e /home/\$1/results/authorized_keys ] && [ -d /home/\$1/.ssh ]\nthen\ncp /home/\$1/results/authorized_keys /home/\$1/.ssh\nchmod 600 /home/\$1/.ssh/authorized_keys && chown \$1:\$1 /home/\$1/.ssh/authorized_keys && rm /home/\$1/results/authorized_keys\nfi\nsudo -u \$1 nohup charmrun +p${CORES} /home/\$1/tools/FastBATLLNN-VNNCOMP/FastBATLLNN/FastBATLLNNServer.py &> /root/nohup_server.out\nsudo -u \$1 /bin/bash" > /usr/local/bin/startup.sh
 RUN chmod 755 /usr/local/bin/startup.sh
 
 ENTRYPOINT [ "/usr/local/bin/startup.sh" ]

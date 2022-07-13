@@ -27,7 +27,7 @@ fi
 
 export PYTHONPATH="${SCRIPT_DIR}/FastBATLLNN:${SCRIPT_DIR}/FastBATLLNN/HyperplaneRegionEnum:${SCRIPT_DIR}/FastBATLLNN/TLLnet:${SCRIPT_DIR}/nnenum/src/nnenum"
 
-python3 -m FastBATLLNNClient getResult "$ONNXFILE" "$VNNLIBFILE" > $RESULTFILE
+python3 -m FastBATLLNNClient getResult "$ONNXFILE" "$VNNLIBFILE" > "$RESULTFILE"
 
 # For now, only shutdown the server after the last network
 if [ "`basename \"$ONNXFILE\"`" = "tllBench_n=2_N=M=64_m=1_instance_7_3.onnx" ]; then

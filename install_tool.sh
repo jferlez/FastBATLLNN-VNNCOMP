@@ -26,7 +26,7 @@ cp ../.hub_token .
 
 # make sure server logs get printed to stdout on the host
 for (( n=0; n<500; n++ )); do
-    if [ -f "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out" ]; do
+    if [ -f "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out" ]; then
         cat "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
         echo "" > "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
         sleep 5

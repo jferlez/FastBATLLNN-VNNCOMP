@@ -14,15 +14,29 @@ SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 cd "$SCRIPT_DIR"
 
+SYSTEM_TYPE=$(uname)
+if [ "$SYSTEM_TYPE" = "Darwin" ]; then
+    echo ""
+    USER=`id -n -u`
+else
+    add-apt-repository universe
+    apt-get update
+    apt -y install python3-pip python3.9 python3.9-dev docker.io
+    usermod -a -G docker ubuntu
+    USER="ubuntu"
+    sudo -u $USER python3.9 -m pip install --upgrade pip && python3.9 -m pip install protobuf==3.19.3 tensorflow-gpu==2.9.1 scipy onnx onnxruntime tf2onnx
+fi
+
+
 # Checkout submodules
-git submodule update --init --recursive
-git submodule update --recursive --remote
+sudo -u $USER git submodule update --init --recursive
+sudo -u $USER git submodule update --recursive --remote
 
 cd FastBATLLNN
-cp ../.hub_token .
+sudo -u $USER cp ../.hub_token .
 
-./dockerbuild.sh
-./dockerrun.sh --server
+sudo -i -u $USER ./dockerbuild.sh
+sudo -i -u $USER ./dockerrun.sh --server
 
 # make sure server logs get printed to stdout on the host
 for (( n=0; n<500; n++ )); do
@@ -30,7 +44,7 @@ for (( n=0; n<500; n++ )); do
         sleep 5
         cat "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
         sleep 5
-        echo ".................... Install Completed" > "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
+        sudo -u $USER echo ".................... Install Completed" > "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
         break
     else
         sleep 1

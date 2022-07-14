@@ -29,6 +29,7 @@ for (( n=0; n<500; n++ )); do
     if [ -f "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out" ]; do
         cat "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
         echo "" > "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
+        sleep 5
         break
     else
         sleep 1

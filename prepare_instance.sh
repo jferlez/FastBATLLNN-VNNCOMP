@@ -36,9 +36,9 @@ export PYTHONPATH="${SCRIPT_DIR}/FastBATLLNN:${SCRIPT_DIR}/FastBATLLNN/Hyperplan
 
 sleep 5
 
-"${SCRIPT_DIR}/FastBATLLNN/dockerrun.sh" --server
+# "${SCRIPT_DIR}/FastBATLLNN/dockerrun.sh" --server
 
-sleep 30
+# sleep 30
 
 python3.9 -m FastBATLLNNClient setProblem "$ONNXFILE" "$VNNLIBFILE"
 

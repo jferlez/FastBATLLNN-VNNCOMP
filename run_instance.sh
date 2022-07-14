@@ -35,8 +35,8 @@ cat "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
 echo ".................... Obtained Results for Instance [${ONNXFILE} + ${VNNLIBFILE}]" > "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
 
 # For now, only shutdown the server after the last network
-if [ "`basename \"$ONNXFILE\"`" = "tllBench_n=2_N=M=64_m=1_instance_7_3.onnx" ]; then
-    python3.9 -m FastBATLLNNClient shutdown
-fi
+# if [ "`basename \"$ONNXFILE\"`" = "tllBench_n=2_N=M=64_m=1_instance_7_3.onnx" ]; then
+#     python3.9 -m FastBATLLNNClient shutdown
+# fi
 # Alternately, shutdown the server after every network; prepare_instance.sh will automatically restart it anyway
 # python3 -m FastBATLLNNClient shutdown

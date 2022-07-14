@@ -29,7 +29,7 @@ for (( n=0; n<500; n++ )); do
     if [ -f "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out" ]; then
         cat "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
         sleep 5
-        echo "" > "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
+        echo ".................... Install Completed" > "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
         break
     else
         sleep 1

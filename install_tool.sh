@@ -44,6 +44,7 @@ for (( n=0; n<500; n++ )); do
     if [ -f "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out" ]; then
         sleep 5
         cat "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
+        chmod 666 "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
         sleep 5
         sudo -u $USER bash -c "echo \".................... Install Completed\" > \"${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out\""
         break

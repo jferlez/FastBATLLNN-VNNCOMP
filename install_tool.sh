@@ -11,3 +11,18 @@
 
 WORKING_DIR="$(pwd)"
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+cd "$SCRIPT_DIR"
+
+# Checkout submodules
+git submodule update --init --recursive
+git submodule update --recursive --remote
+
+cd FastBATLLNN
+cp ../.hub_token .
+
+./dockerbuild.sh
+./dockerrun.sh --server
+
+# make sure server logs get printed to stdout on the host
+cat "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"

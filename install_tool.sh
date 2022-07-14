@@ -25,6 +25,7 @@ else
     usermod -a -G docker ubuntu
     USER="ubuntu"
     sudo -u $USER python3.9 -m pip install --upgrade pip && python3.9 -m pip install protobuf==3.19.3 tensorflow-gpu==2.9.1 scipy onnx onnxruntime tf2onnx
+    chown -R $USER "$SCRIPT_DIR"
 fi
 
 

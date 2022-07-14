@@ -40,7 +40,7 @@ sleep 5
 
 sleep 30
 
-python3 -m FastBATLLNNClient setProblem "$ONNXFILE" "$VNNLIBFILE"
+python3.9 -m FastBATLLNNClient setProblem "$ONNXFILE" "$VNNLIBFILE"
 
 # make sure server logs get printed to stdout on the host
 cat "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"

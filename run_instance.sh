@@ -28,7 +28,7 @@ fi
 
 export PYTHONPATH="${SCRIPT_DIR}/FastBATLLNN:${SCRIPT_DIR}/FastBATLLNN/HyperplaneRegionEnum:${SCRIPT_DIR}/FastBATLLNN/TLLnet:${SCRIPT_DIR}/nnenum/src/nnenum"
 
-python3 -m FastBATLLNNClient getResult "$ONNXFILE" "$VNNLIBFILE" $TIMEOUT > "$RESULTFILE"
+python3.9 -m FastBATLLNNClient getResult "$ONNXFILE" "$VNNLIBFILE" $TIMEOUT > "$RESULTFILE"
 
 # make sure server logs get printed to stdout on the host
 cat "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
@@ -36,7 +36,7 @@ echo ".................... Obtained Results for Instance [${ONNXFILE} + ${VNNLIB
 
 # For now, only shutdown the server after the last network
 if [ "`basename \"$ONNXFILE\"`" = "tllBench_n=2_N=M=64_m=1_instance_7_3.onnx" ]; then
-    python3 -m FastBATLLNNClient shutdown
+    python3.9 -m FastBATLLNNClient shutdown
 fi
 # Alternately, shutdown the server after every network; prepare_instance.sh will automatically restart it anyway
 # python3 -m FastBATLLNNClient shutdown

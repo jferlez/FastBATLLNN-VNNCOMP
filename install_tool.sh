@@ -31,7 +31,7 @@ fi
 
 # Checkout submodules
 sudo -u $USER git submodule update --init --recursive
-sudo -u $USER git submodule update --recursive --remote
+# sudo -u $USER git submodule update --recursive --remote
 
 cd FastBATLLNN
 sudo -u $USER cp ../.hub_token .

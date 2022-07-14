@@ -20,6 +20,7 @@
 # ** NB: ** If you want to skip a benchmark category entirely, you can have prepare_instance.sh 
 # return a nonzero value (the category is passed in as a command=line argument).
 
+WORKING_DIR="$(pwd)"
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 BENCHMARK=$2

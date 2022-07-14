@@ -12,6 +12,7 @@
 # you want to release resources cleanly like GPUs. The results file should be created after the script is run and 
 # is a simple text file containing one word on a single line: holds, violated, timeout, error, or unknown.
 
+WORKING_DIR="$(pwd)"
 SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 BENCHMARK=$2

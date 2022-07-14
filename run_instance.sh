@@ -30,6 +30,9 @@ export PYTHONPATH="${SCRIPT_DIR}/FastBATLLNN:${SCRIPT_DIR}/FastBATLLNN/Hyperplan
 
 python3 -m FastBATLLNNClient getResult "$ONNXFILE" "$VNNLIBFILE" > "$RESULTFILE"
 
+# make sure server logs get printed to stdout on the host
+cat "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"
+
 # For now, only shutdown the server after the last network
 if [ "`basename \"$ONNXFILE\"`" = "tllBench_n=2_N=M=64_m=1_instance_7_3.onnx" ]; then
     python3 -m FastBATLLNNClient shutdown

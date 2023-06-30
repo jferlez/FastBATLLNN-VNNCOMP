@@ -38,7 +38,7 @@ cd FastBATLLNN
 sudo -u $USER cp ../.hub_token .
 
 sudo -i -u $USER bash -c "cd \"${SCRIPT_DIR}/FastBATLLNN\" && ./dockerbuild.sh"
-sudo -i -u $USER bash -c "cd \"${SCRIPT_DIR}/FastBATLLNN\" && ./dockerrun.sh --server"
+sudo -i -u $USER bash -c "cd \"${SCRIPT_DIR}/FastBATLLNN\" && ./dockerrun.sh --server --http-port=7999"
 
 # make sure server logs get printed to stdout on the host
 for (( n=0; n<500; n++ )); do

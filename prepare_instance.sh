@@ -36,7 +36,7 @@ export PYTHONPATH="${SCRIPT_DIR}/FastBATLLNN:${SCRIPT_DIR}/FastBATLLNN/Hyperplan
 
 sleep 5
 
-"${SCRIPT_DIR}/FastBATLLNN/dockerrun.sh" --server
+"${SCRIPT_DIR}/FastBATLLNN/dockerrun.sh" --server --http-port=7999
 
 sleep 30
 

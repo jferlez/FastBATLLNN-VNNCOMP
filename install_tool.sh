@@ -21,10 +21,11 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
 else
     add-apt-repository universe
     apt-get update
-    apt -y install python3-pip python3.9 python3.9-dev docker.io
+    apt -y install python3-pip docker.io
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
     usermod -a -G docker ubuntu
     USER="ubuntu"
-    python3.9 -m pip install --upgrade pip && python3.9 -m pip install protobuf==3.19.3 tensorflow-gpu==2.9.1 scipy onnx onnxruntime tf2onnx
+    python3 -m pip install --upgrade pip && python3 -m pip install tensorflow scipy onnx onnxruntime tf2onnx
     chown -R $USER "$SCRIPT_DIR"
 fi
 

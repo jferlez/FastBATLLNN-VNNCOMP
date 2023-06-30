@@ -28,7 +28,7 @@ fi
 
 export PYTHONPATH="${SCRIPT_DIR}/FastBATLLNN:${SCRIPT_DIR}/FastBATLLNN/HyperplaneRegionEnum:${SCRIPT_DIR}/FastBATLLNN/TLLnet:${SCRIPT_DIR}/nnenum/src/nnenum"
 
-python3.9 -m FastBATLLNNClient getResult "$ONNXFILE" "$VNNLIBFILE" $TIMEOUT > "$RESULTFILE"
+python3 -m FastBATLLNNClient getResult "$ONNXFILE" "$VNNLIBFILE" $TIMEOUT > "$RESULTFILE"
 
 # make sure server logs get printed to stdout on the host
 cat "${SCRIPT_DIR}/FastBATLLNN/container_results/FastBATLLNN_server_log.out"

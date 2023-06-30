@@ -25,7 +25,7 @@ else
     update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1
     usermod -a -G docker ubuntu
     USER="ubuntu"
-    sudo -u $USER python3 -m pip install --upgrade pip && sudo -u $USER python3 -m pip -v -v -v install tensorflow scipy onnx onnxruntime tf2onnx --no-cache-dir
+    sudo -u $USER python3 -m pip install --upgrade pip && sudo -u $USER python3 -m pip install tensorflow scipy onnx onnxruntime tf2onnx --no-cache-dir
     chown -R $USER "$SCRIPT_DIR"
 fi
 

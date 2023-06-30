@@ -1,0 +1,21 @@
+name: FastBATLLNN
+ami: ami-0892d3c7ee96c0bf7, 
+scripts_dir: .
+manual_installation_step: False
+run_installation_script_as_root: False
+run_post_installation_script_as_root: False
+run_toolkit_as_root: False
+description: >
+  FastBATLLNN is a fast verifier of box-like (hyper-rectangle) output 
+  properties for Two-Level Lattice (TLL) Neural Networks (NN). FastBATLLNN 
+  uses both the unique semantics of the TLL architecture and the decoupled 
+  nature of box-like output constraints to provide a fast, polynomial-time 
+  verification algorithm: that is, polynomial-time in the number of neurons 
+  in the TLL NN to be verified (for a fixed input dimension). FastBATLLNN 
+  fundamentally works by converting the TLL verification problem into a region 
+  enumeration problem for a hyperplane arrangement (the arrangement is jointly 
+  derived from the TLL NN and the verification property). However, as 
+  FastBATLLNN leverages the unique properties of TLL NNs and box-like output 
+  constraints, its use is necessarily limited to verification problems 
+  formulated in those terms. Hence, FastBATLLNN can only compete on the 
+  tllverifybench benchmark.

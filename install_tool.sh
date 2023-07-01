@@ -19,10 +19,24 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     echo ""
     USER=`id -n -u`
 else
-    add-apt-repository universe
+    # add-apt-repository universe
     apt-get update
-    apt -y install python3-pip docker.io
+    apt-get -y upgrade
+    
+    apt-get install ca-certificates curl gnupg
+    install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+    chmod a+r /etc/apt/keyrings/docker.gpg
+    echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    apt-get update
+    apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+    apt -y install python3-pip
     usermod -a -G docker ubuntu
+    systemctl restart docker
     USER="ubuntu"
     sudo -u $USER python3 -m pip install --upgrade pip && sudo -u $USER python3 -m pip install tensorflow scipy onnx onnxruntime tf2onnx --no-cache-dir
     chown -R $USER "$SCRIPT_DIR"

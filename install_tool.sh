@@ -19,6 +19,7 @@ if [ "$SYSTEM_TYPE" = "Darwin" ]; then
     echo ""
     USER=`id -n -u`
 else
+    export NEEDRESTART_MODE=a
     # add-apt-repository universe
     apt-get update
     apt-get -y upgrade

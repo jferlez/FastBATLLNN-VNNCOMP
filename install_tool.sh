@@ -39,7 +39,7 @@ else
     usermod -a -G docker ubuntu
     systemctl restart docker
     USER="ubuntu"
-    sudo -u $USER python3 -m pip install --upgrade pip && sudo -u $USER python3 -m pip install tensorflow scipy onnx onnxruntime tf2onnx --no-cache-dir
+    sudo -u $USER python3 -m pip install --upgrade pip && sudo -u $USER python3 -m pip install tensorflow==2.12.0 scipy onnx onnxruntime tf2onnx --no-cache-dir
     chown -R $USER "$SCRIPT_DIR"
 fi
 
